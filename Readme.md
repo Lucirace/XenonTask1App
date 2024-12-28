@@ -98,9 +98,7 @@ This module implements a recommendation system for properties based on a user's 
 
 ### Responsive
 
-### 404 Page
-
-![alt text](<WhatsApp Image 2024-12-28 at 23.30.40_9a9544d5.jpg>)
+![alt text](image-2.png)
 
 ### Propeties in MongoDB
 
