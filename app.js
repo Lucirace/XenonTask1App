@@ -31,8 +31,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 // Homepage
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Welcome to Property App' });
+app.get('/', async(req, res) => {
+    try {
+        const response = await fetch(`${process.env.BASE_URL}/api/properties`); // Replace with actual API URL
+        const properties = await response.json(); // Parse JSON response
+        res.render('index', {title: 'Welcome to Property App',  properties });
+    } catch (err) {
+        res.status(500).send('Error loading properties');
+    }
 });
 
 // Login Page
