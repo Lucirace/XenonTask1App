@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up - Property Listing</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center py-12">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div class="text-center mb-8">
+            <i class="fas fa-home text-4xl text-blue-600 mb-4"></i>
+            <h1 class="text-2xl font-bold text-gray-800">Welcome to Property Listing</h1>
+            <p class="text-gray-600">Your dream property awaits</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-gray-200 mb-6">
+            <button onclick="showTab('login')" id="loginTab" 
+                class="flex-1 py-2 px-4 text-center border-b-2 border-blue-600 text-blue-600 font-medium">
+                Login
+            </button>
+            <button onclick="showTab('signup')" id="signupTab"
+                class="flex-1 py-2 px-4 text-center border-b-2 border-transparent text-gray-500 font-medium">
+                Sign Up
+            </button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+            <form action="/api/auth/login" method="POST" class="space-y-6">
+                <div>
+                    <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="loginEmail" name="email" required
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="loginPassword" name="password" required
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember" name="remember"
+                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href="/forgot-password" class="text-sm text-blue-600 hover:text-blue-500">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Sign In
+                </button>
+            </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div id="signupForm" class="hidden">
+            <form action="/api/auth/signup" method="POST" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" id="name" name="name" required
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="John Doe">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="signupEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input type="email" id="signupEmail" name="email" required
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="your@email.com">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="signupPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="signupPassword" name="password" required
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-medium text-gray-700 mb-4">Preferences (Optional)</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-2">
+                                Preferred Location
+                            </label>
+                            <input type="text" id="location" name="preferences[location]"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="City or Area">
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="budgetMin" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Min Budget
+                                </label>
+                                <input type="number" id="budgetMin" name="preferences[budgetMin]"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="0">
+                            </div>
+                            <div>
+                                <label for="budgetMax" class="block text-sm font-medium text-gray-700 mb-2">
+                                    Max Budget
+                                </label>
+                                <input type="number" id="budgetMax" name="preferences[budgetMax]"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="1000000">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="bedrooms" class="block text-sm font-medium text-gray-700 mb-2">
+                                Preferred Bedrooms
+                            </label>
+                            <select id="bedrooms" name="preferences[bedrooms]"
+                                class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select number of bedrooms</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all forms
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.add('hidden');
+            
+            // Show selected form
+            document.getElementById(tabName + 'Form').classList.remove('hidden');
+            
+            // Update tab styles
+            document.getElementById('loginTab').classList.remove('border-blue-600', 'text-blue-600');
+            document.getElementById('signupTab').classList.remove('border-blue-600', 'text-blue-600');
+            document.getElementById('loginTab').classList.add('border-transparent', 'text-gray-500');
+            document.getElementById('signupTab').classList.add('border-transparent', 'text-gray-500');
+            
+            document.getElementById(tabName + 'Tab').classList.remove('border-transparent', 'text-gray-500');
+            document.getElementById(tabName + 'Tab').classList.add('border-blue-600', 'text-blue-600');
+        }
+    </script>
+</body>
+</html>
