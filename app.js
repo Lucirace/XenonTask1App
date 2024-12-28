@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', async(req, res) => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/api/properties`); // Replace with actual API URL
+        console.log(response);
         const properties = await response.json(); // Parse JSON response
         res.render('index', {title: 'Welcome to Property App',  properties });
     } catch (err) {
@@ -49,6 +50,7 @@ app.get('/login', (req, res) => {
 // Property Listing Page
 
 app.get('/properties', async (req, res) => {
+
     try {
         const response = await fetch(`${process.env.BASE_URL}/api/properties`); // Replace with actual API URL
         const properties = await response.json(); // Parse JSON response
