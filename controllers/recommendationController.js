@@ -1,5 +1,5 @@
 import User from '../models/User.js';
-import Property from '../models/property.js';
+import Property from '../models/Property.js';
 import cosineSimilarity from 'cosine-similarity';
 
 // Helper: Convert tags into vectors
