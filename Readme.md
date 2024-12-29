@@ -104,6 +104,138 @@ This module implements a recommendation system for properties based on a user's 
 
 ![alt text](image-1.png)
 
+# Property App API Documentation
+
+## Overview
+This API is designed to manage properties and recommendations, handle user authentication, and serve dynamic web pages for a property listing application.
+
+### Base URL
+```
+http://<your-server-domain>:<port>
+```
+
+### Port
+Default: `5000`
+
+---
+
+## API Endpoints
+
+### Authentication Routes
+**Base Path:** `/api/auth`
+
+Refer to the `authRoutes.js` file for detailed routes and functionality. These routes handle user authentication.
+
+### Property Routes
+**Base Path:** `/api/properties`
+
+Refer to the `propertyRoutes.js` file for detailed routes and functionality. These routes manage property-related operations, such as retrieving and adding properties.
+
+### Recommendation Routes
+**Base Path:** `/api/recommendations`
+
+Refer to the `recommendationRoutes.js` file for detailed routes and functionality. These routes manage recommendations related to properties.
+
+---
+
+## Web Pages
+
+### Homepage
+**Route:** `/`
+
+**Method:** `GET`
+
+**Description:** Displays the homepage with a list of properties.
+
+**Response:**
+- **200 OK:** Renders the `index.ejs` template with property data.
+- **500 Internal Server Error:** Displays an error message if properties cannot be loaded.
+
+---
+
+### Login Page
+**Route:** `/login`
+
+**Method:** `GET`
+
+**Description:** Displays the login page.
+
+**Response:**
+- **200 OK:** Renders the `login.ejs` template.
+
+---
+
+### Property Listing Page
+**Route:** `/properties`
+
+**Method:** `GET`
+
+**Description:** Displays a list of all properties.
+
+**Response:**
+- **200 OK:** Renders the `properties.ejs` template with property data.
+- **500 Internal Server Error:** Displays an error message if properties cannot be loaded.
+
+---
+
+## Middleware
+
+### Body Parsing
+- **JSON Parsing:** Parses incoming JSON requests using `express.json()`.
+- **Form Data Parsing:** Parses URL-encoded form data using `express.urlencoded({ extended: true })`.
+
+### Static Files
+Serves static files from the `public` directory.
+
+---
+
+## Error Handling
+
+### 404 Not Found
+**Route:** `*`
+
+**Description:** Catches all undefined routes and renders a `404.ejs` page.
+
+**Response:**
+- **404 Not Found:** Displays the `404.ejs` template with a "Page Not Found" message.
+
+---
+
+## Views
+
+### Template Engine
+Uses `EJS` as the template engine. All views are located in the `views` directory.
+
+
+---
+
+
+## Directory Structure
+
+```
+.
+├── config
+│   └── db.js                 # MongoDB connection setup
+├── routes
+│   ├── authRoutes.js         # Authentication routes
+│   ├── propertyRoutes.js     # Property management routes
+│   └── recommendationRoutes.js # Recommendation routes
+├── views
+│   ├── index.ejs             # Homepage template
+│   ├── login.ejs             # Login page template
+│   ├── properties.ejs        # Property listing template
+│   └── 404.ejs               # 404 error page template
+├── public
+│   └── ...                   # Static assets (CSS, JS, images, etc.)
+├── server.js                 # Main server file
+└── .env                      # Environment configuration file
+```
+
+---
+
+## 
+
+
 
 
 
